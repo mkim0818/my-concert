@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Artists{% endblock %}
+
+{% block content %}
+
+    <h2>아티스트</h2>
+
+    {% for artist in object_list %}
+     <li> <a href="{% url "artists:artist-detail" artist.slug %}"> {{ artist.name }} </a></li>
+    {% endfor %}
+
+{% endblock content %}

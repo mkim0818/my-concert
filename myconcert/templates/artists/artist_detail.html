@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}{% load i18n %}
+{% block title %}Artists{% endblock %}
+
+{% block content %}
+
+    <h2>{{ object.name }}</h2>
+    <p><img src="{{ object.banner.url }}"> <!--#.url을 붙일 것--> </p>
+
+    <p> {{ object.bio }}</p>
+    <p><img src="{{ object.headshot.url }}"> <!--#.url을 붙일 것--> </p>
+
+    <p>공연목록
+     {% for gig in object.gig_set.all %}
+     <li> <a href="{% url 'giginfo:gig-detail' gig.slug %}"> {{ gig }}</a> {{ gig.date|date:"M j, Y" }} @ {{ gig.venue.address }}</li>
+     {% endfor %}
+     </p>
+    <p><a href="{% url 'artists:artist-list' %}">아티스트 목록 보기</a></p>
+{% endblock content %}
